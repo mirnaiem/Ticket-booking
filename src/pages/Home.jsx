@@ -1,14 +1,9 @@
-import EventCard from "../components/EventCard";
+import Event from "../components/Event";
 
 const Home = () => {
  return (
   <div>
-<EventCard/>
-<EventCard/>
-<EventCard/>
-<EventCard/>
-<EventCard/>
-<EventCard/>
+   <Event/>
   </div>
  );
 };

@@ -1,43 +1,41 @@
+/* eslint-disable react/prop-types */
+
+import { Link } from "react-router-dom";
 
 
-const EventCard = () => {
-  const event = {
-    name: "Music Concert",
-    date: "2024-07-20",
-    location: "New York",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDXcU5KlvxVJioZzSHV4aTY-s-86C72LV99Q&s" // Placeholder image
-  };
-
+const EventCard = ({event}) => {
+ const {name,image,date,location,_id}=event
   return (
-    <div className="max-w-sm rounded-2xl overflow-hidden shadow-lg transform hover:scale-105 transition-transform duration-300 bg-white m-4">
+    <div className="w-[384px] rounded-2xl overflow-hidden shadow-lg transform hover:scale-105 transition-transform duration-300 bg-white m-4">
       <div className="flex items-center justify-evenly pt-4">
-        <img className="w-1/2 h-32 object-cover rounded-2xl" src={event.image} alt={event.name} />
+        <img className="w-1/2 h-32 object-cover rounded-2xl" src={image} alt={name} />
         <div className="font-bold text-xl mb-2 text-center">
           <h1 className="text-gray-500">Event</h1>
-          {event.name}
+          {name}
         </div>
       </div>
       <div className="flex items-center justify-center  pt-10">
-        <div className="text-center">
+        <div className="text-center w-1/2">
           <p className="text-gray-700 text-base">
-            Date: {event.date}
+            Date: {date}
           </p>
           <h1 className="text-gray-500">Date</h1>
         </div>
-        <div className="border-l-2 border-gray-400 h-14 mx-4"></div> {/* Adjusted border width and height */}
-        <div className="text-center">
+        <div className="border-l-2 border-gray-400 h-14 mx-2"></div> {/* Adjusted border width and height */}
+        <div className="text-center w-1/2">
           <p className="text-gray-700 text-base">
-            Location: {event.location}
+            Location: {location.name}
           </p>
           <h1 className="text-gray-500">Location</h1>
         </div>
       </div>
       <div className="divider divider-start"></div>
-      <div className="text-center pb-4"><button 
+      <div className="text-center pb-4">
+       <Link to={`/eventDetails/${_id}`}
           className="hover:text-blue-700 text-blue-500 font-bold "
         >
           View Details
-        </button></div>
+        </Link></div>
         
       
     </div>
