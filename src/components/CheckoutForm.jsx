@@ -9,6 +9,7 @@ const CheckoutForm = () => {
   const navigate = useNavigate();
   const { state } = location;
   const { event, ticketType, numberOfTickets } = state;
+  console.log(state);
 
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -22,23 +23,18 @@ const CheckoutForm = () => {
       return;
     }
 
-    // Parse number of tickets to integer
     const tickets = parseInt(numberOfTickets, 10);
+    const price = parseFloat(ticketType.price);
 
-    // Parse ticket price to float
-    let price = parseFloat(ticketType.price);
-    
-    // Check if price is valid
     if (isNaN(price) || price <= 0) {
       setError('Invalid ticket price.');
       setLoading(false);
       return;
     }
 
-    // Calculate total amount
     const amount = tickets * price;
+    console.log(amount);
 
-    // Check if amount meets the minimum requirement
     if (amount < 0.50) {
       setError('Amount must be at least $0.50.');
       setLoading(false);
@@ -63,7 +59,7 @@ const CheckoutForm = () => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            amount: Math.round(amount * 100), // convert to cents
+            amount: Math.round(amount * 100),
             currency: 'usd',
           }),
         });
@@ -82,9 +78,6 @@ const CheckoutForm = () => {
             setError(confirmError.message);
           } else {
             alert('Payment successful!');
-
-            // Additional logic after successful payment (update backend, navigate, etc.)
-
             navigate(`/eventDetails/${event._id}`);
           }
         }
@@ -95,10 +88,6 @@ const CheckoutForm = () => {
 
     setLoading(false);
   };
-
-  // Debugging: Log ticketType and price
-  console.log('ticketType:', ticketType);
-  console.log('ticketType.price:', ticketType ? ticketType.price : 'undefined');
 
   return (
     <form onSubmit={handleSubmit}>

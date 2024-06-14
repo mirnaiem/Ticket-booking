@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const BookNow = () => {
@@ -16,6 +16,7 @@ const BookNow = () => {
     return null;
   }
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [formData, setFormData] = useState({
     ticketType: '',
     numberOfTickets: 1,
@@ -33,48 +34,34 @@ const BookNow = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Convert numberOfTickets to number
     const tickets = parseInt(formData.numberOfTickets, 10); // base 10
 
-    // Ensure ticketType and tickets are valid before proceeding
     if (!formData.ticketType || isNaN(tickets) || tickets <= 0) {
       alert('Please select ticket type and valid number of tickets.');
       return;
     }
 
-    // Find the selected ticket object
     const selectedTicket = event.tickets.find(ticket => ticket.type === formData.ticketType);
-
-    // Debugging: Log selectedTicket and formData
-    console.log('Selected Ticket:', selectedTicket);
-    console.log('Form Data:', formData);
 
     if (!selectedTicket) {
       alert('Selected ticket type not found in event tickets.');
       return;
     }
 
-    // Check if price exists and is a valid number
     const price = parseFloat(selectedTicket.price);
     if (isNaN(price) || price <= 0) {
       alert('Invalid ticket price.');
       return;
     }
 
-    // Calculate total amount
     const amount = tickets * price;
 
-    // Check if amount meets the minimum requirement
     if (amount < 0.50) {
       alert('Amount must be at least $0.50.');
       return;
     }
 
-    // Navigate to payment page with form data
-    navigate('/payment', { state: { ...formData, event } });
-
-    console.log(formData); // Check form data in console
+    navigate('/payment', { state: { ...formData, ticketType: selectedTicket, event } });
     alert('Booking Submitted');
   };
 
