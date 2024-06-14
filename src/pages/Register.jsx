@@ -26,7 +26,7 @@ if(password === confirmPass){
     'email': data?.user?.email,
     'name': name
    }
-   fetch('http://localhost:3000/users', {
+   fetch('https://ticket-booking-server-omega.vercel.app/users', {
     method: "POST",
     headers: {
       "Content-type": "application/json"

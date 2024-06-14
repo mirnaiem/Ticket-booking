@@ -17,7 +17,7 @@ const router = createBrowserRouter([
  {
   path:'eventDetails/:id',
   element:<Private><ViewDetails/></Private>,
-  loader:({params})=>  fetch(`http://localhost:3000/events/${params.id}`)
+  loader:({params})=>  fetch(`https://ticket-booking-server-omega.vercel.app/events/${params.id}`)
  },
  {
   path:'booknow/:id',

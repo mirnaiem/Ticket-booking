@@ -11,7 +11,7 @@ const GoogleLogin = () => {
      'email': data?.user?.email,
      'name':data?.user?.displayName
     }
-    fetch('http://localhost:3000/users', {
+    fetch('https://ticket-booking-server-omega.vercel.app/users', {
      method: "POST",
      headers: {
        "Content-type": "application/json"

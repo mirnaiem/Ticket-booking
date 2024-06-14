@@ -4,7 +4,7 @@ import EventCard from "./EventCard";
 const Event = () => {
  const [data,setData]=useState([])
  useEffect(()=>{
- fetch('http://localhost:3000/events')
+ fetch('https://ticket-booking-server-omega.vercel.app/events')
  .then(res=>res.json())
  .then((data)=>setData(data))
  },[])

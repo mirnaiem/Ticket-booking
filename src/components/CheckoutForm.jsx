@@ -57,7 +57,7 @@ const CheckoutForm = () => {
         setError(error.message);
         setLoading(false);
       } else {
-        const response = await fetch('http://localhost:3000/create-payment-intent', {
+        const response = await fetch('https://ticket-booking-server-omega.vercel.app/create-payment-intent', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
